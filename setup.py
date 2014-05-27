@@ -10,6 +10,6 @@ setup(name='snapchat',
       packages=['snapchat'],
       install_requires=[
           'requests==2.0.1',
-          'pycrypto==2.6.1'
+          'pycrypto==2.6.1',
       ],
       zip_safe=False)
