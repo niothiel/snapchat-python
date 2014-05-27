@@ -11,7 +11,7 @@ Use the python package manager for installation
 
 .. code:: python
 
-    pip install python-snapchat
+    pip install snapchat
 
 Example:
 --------
