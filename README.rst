@@ -2,7 +2,7 @@ Snapchat for Python
 ===================
 
 Implementation of the Snapchat protocol in Python. Heavily based on
-`php-snapchat`_.
+**php-snapchat**
 
 Installation:
 -------------
