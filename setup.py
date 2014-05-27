@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='snapchat',
-      version='0.1',
+      version='0.2',
       description='Implementation of the Snapchat protocol in Python',
       url='https://github.com/itsnauman/snapchat-python',
       author='Nauman Ahmad',
