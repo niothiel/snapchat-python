@@ -22,6 +22,12 @@ class Snapchat(object):
     USERAGENT =             'Snapchat/6.0.0 (iPhone; iOS 7.0.2; gzip)'  # The default useragent
     SNAPCHAT_VERSION =      '4.0.0'                                     # Snapchat Application Version
 
+    ACTION_ADD =            'add'      # Friend action: Add
+    ACTION_BLOCK =          'block'    # Friend action: Block
+    ACTION_DELETE =         'delete'   # Friend action: Delete
+    ACTION_DISPLAY =        'display'  # Friend action: Display
+    ACTION_UNBLOCK =        'unblock'  # Friend action: Unblock
+
     MEDIA_IMAGE =                        0  # Media: Image
     MEDIA_VIDEO =                        1  # Media: Video
     MEDIA_VIDEO_NOAUDIO =                2  # Media: Video without audio
@@ -481,6 +487,53 @@ class Snapchat(object):
             return result['results']
 
         return result
+
+    def friend_action(self, friend, action, additional_data=None):
+        """Performs an action on a Snapchat user.
+
+        :param friend: Snapchat friend to perform an action against.
+        :param action: Name of the action to perform.
+        :param additional_data: Additional data to send via POST.
+        """
+
+        if not self.logged_in:
+            return False
+
+        timestamp = self._timestamp()
+
+        data = {
+            'timestamp': timestamp,
+            'username': self.username,
+            'friend': friend,
+            'action': action
+        }
+
+        if additional_data is not None:
+            data = dict(data.items() + additional_data.items())
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        result = self.post('/friend', data, params)
+
+        try:
+            if not result['logged']:
+                print result
+                return False
+            return result
+        except KeyError:
+            return False
+
+    def set_friend_display_name(self, friend, name):
+        """Sets the friend's display name.
+
+        :param friend: Friend's name to change.
+        :param name: Display name to set.
+        """
+
+        return self.friend_action(friend, Snapchat.ACTION_DISPLAY, {'display': name})
 
     def clear_feed(self):
         """Clear the user's feed."""
