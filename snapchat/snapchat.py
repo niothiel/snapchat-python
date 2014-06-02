@@ -216,7 +216,7 @@ class Snapchat(object):
         timestamp = self._timestamp()
 
         data = {
-            'username': username,
+            'username': self.username,
             'timestamp': timestamp
         }
 
