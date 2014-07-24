@@ -1,1 +1,1 @@
-from snapchat.snapchat import Snapchat
+from snapchat import Snapchat
