@@ -3,6 +3,17 @@ Snapchat for Python
 
 Implementation of the Snapchat protocol in Python. Heavily based on [php-snapchat](https://github.com/dstelljes/php-snapchat).
 
+Install
+-------
+
+```
+pip install requests
+easy_install pycrypto
+git clone https://github.com/niothiel/snapchat-python.git
+cd snapchat-python/src
+python example.py
+```
+
 Example
 -------
 To get started, download snapchat.py and in another file enter the following:
