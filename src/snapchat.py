@@ -6,12 +6,14 @@ import time
 from datetime import datetime
 from Crypto.Cipher import AES
 
+
 if False:
     import logging
     import httplib
     httplib.HTTPConnection.debuglevel = 1
 
-class Snapchat:
+class Snapchat(object):
+
     URL =                   'https://feelinsonice-hrd.appspot.com/bq'
     SECRET =                'iEk21fuwZApXlz93750dmW22pw389dPwOk'        # API Secret
     STATIC_TOKEN =          'm198sOkJEn37DjqZ32lpRu76xmw288xSQ9'        # API Static Token
@@ -360,6 +362,38 @@ class Snapchat:
         result = self.post('/send', data, params)
         return result <> False
 
+    def set_story(self, media_id, media_type, time=10):
+        """Send a Snapchat.
+
+        You must have uploaded the video or image using upload() to get the media_id.
+
+        :param media_id: The unique id for the media.
+        :param media_type: 0 for photo, 1 for video.
+        :param time: Viewing time for the Snap (in seconds).
+        """
+        if not self.logged_in:
+            return False
+
+        timestamp = self._timestamp()
+        print media_id
+        data = {
+            'client_id': media_id,
+            'media_id': media_id,
+            'time': time,
+            'timestamp': timestamp,
+            'username': self.username,
+            'caption_text_display': '#YOLO',
+            'type': 0,
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        result = self.post('/post_story', data, params)
+        return result <> False
+
     def get_updates(self):
         """Get all events pertaining to the user. (User, Snaps, Friends)."""
 
@@ -408,6 +442,27 @@ class Snapchat:
             }
             result.append(snap_readable)
 
+        return result
+
+    def get_stories(self):
+        """Get all stories."""
+
+        if not self.logged_in:
+            return False
+
+        timestamp = self._timestamp()
+        data = {
+            'timestamp': timestamp,
+            'username': self.username
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        result = self.post('/stories', data, params)
+        
         return result
 
     def get_media(self, id):
