@@ -216,7 +216,7 @@ class Snapchat(object):
         timestamp = self._timestamp()
 
         data = {
-            'username': username,
+            'username': self.username,
             'timestamp': timestamp
         }
 
@@ -557,3 +557,22 @@ class Snapchat(object):
             return True
 
         return False
+
+    def add_friend(self, friend):
+        timestamp = self._timestamp()
+
+        data = {
+            'action': 'add',
+            'friend': friend,
+            'timestamp': timestamp,
+            'username': self.username
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        self.post('/friend', data, params)
+
+        return True
