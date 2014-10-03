@@ -18,7 +18,7 @@ def get_downloaded():
         if ext not in EXTENSIONS:
             continue
 
-        ts, username, id = filename.split('_')
+        ts, username, id = filename.split('+')
         result.add(id)
     return result
 
@@ -35,7 +35,7 @@ def download(s, snap):
         return False
 
     ext = s.is_media(result)
-    filename = '{}_{}_{}.{}'.format(ts, name, id, ext)
+    filename = '{}+{}+{}.{}'.format(ts, name, id, ext)
     path = PATH + filename
     with open(path, 'wb') as fout:
         fout.write(result)
