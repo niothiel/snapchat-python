@@ -503,3 +503,22 @@ class Snapchat:
             return True
 
         return False
+        
+        def addFriend(self, friend):
+            timestamp = self._timestamp()
+            
+            data = {
+                'action': 'add',
+                'friend': friend,
+                'timestamp': timestamp,
+                'username': self.username
+            }
+            
+            params = [
+                self.auth_token,
+                timestamp
+            ]
+            
+            self.post('/friend', data, params)
+            
+            return True
