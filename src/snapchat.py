@@ -360,15 +360,14 @@ class Snapchat(object):
         ]
 
         result = self.post('/send', data, params)
-        return result <> False
+        return result != False
 
-    def set_story(self, media_id, media_type, time=10):
-        """Send a Snapchat.
+    def add_story(self, media_id, time=10):
+        """Add a story to your stories.
 
         You must have uploaded the video or image using upload() to get the media_id.
 
         :param media_id: The unique id for the media.
-        :param media_type: 0 for photo, 1 for video.
         :param time: Viewing time for the Snap (in seconds).
         """
         if not self.logged_in:
@@ -392,7 +391,7 @@ class Snapchat(object):
         ]
 
         result = self.post('/post_story', data, params)
-        return result <> False
+        return result != False
 
     def get_updates(self):
         """Get all events pertaining to the user. (User, Snaps, Friends)."""

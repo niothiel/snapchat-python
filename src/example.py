@@ -1,5 +1,6 @@
 from snapchat import Snapchat
 import getpass
+from pprint import pprint
 
 s = Snapchat()
 
@@ -8,4 +9,4 @@ password = getpass.getpass('Enter your password: ')
 s.login(username, password)
 
 snaps = s.get_snaps()
-print snaps
+pprint(snaps)

@@ -9,7 +9,7 @@ Install
 ```
 pip install requests
 easy_install pycrypto
-git clone https://github.com/varner/snapchat-python.git
+git clone https://github.com/niothiel/snapchat-python.git
 cd snapchat-python/src
 python example.py
 ```
