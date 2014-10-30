@@ -576,3 +576,59 @@ class Snapchat(object):
         self.post('/friend', data, params)
 
         return True
+
+    def delete_friend(self, friend):
+        timestamp = self._timestamp()
+
+        data = {
+            'action': 'delete',
+            'friend': friend,
+            'timestamp': timestamp,
+            'username': self.username
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        self.post('/friend', data, params)
+
+        return False
+    def block_friend(self, friend):
+        timestamp = self._timestamp()
+
+        data = {
+            'action': 'block',
+            'friend': friend,
+            'timestamp': timestamp,
+            'username': self.username
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        self.post('/friend', data, params)
+
+        return False
+
+    def unblock_friend(self, friend):
+        timestamp = self._timestamp()
+
+        data = {
+            'action': 'unblock',
+            'friend': friend,
+            'timestamp': timestamp,
+            'username': self.username
+        }
+
+        params = [
+            self.auth_token,
+            timestamp
+        ]
+
+        self.post('/friend', data, params)
+
+        return False
