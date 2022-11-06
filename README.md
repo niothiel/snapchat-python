@@ -1,3 +1,8 @@
+# PROJECT IS DEPRECATED
+
+This uses APIs from many years ago for Snapchat. These APIs have since been changed/updated. This project is provided only for reference/archival purposes.
+
+
 Snapchat for Python
 ===============
 
